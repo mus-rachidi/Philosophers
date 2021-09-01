@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: murachid <murachid@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/31 18:16:33 by murachid          #+#    #+#             */
+/*   Updated: 2021/08/31 18:16:34 by murachid         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philosphers.h"
 
 size_t	ft_strlen(const char *str)
@@ -18,13 +30,6 @@ int	iswhitespace(char c)
 		return (1);
 	}
 	return (0);
-}
-
-void	ft_putstr_fd(char *str, int fd)
-{
-	if (!str)
-		return ;
-	write(fd, str, ft_strlen(str));
 }
 
 int			ft_atoi(const char *str)
@@ -50,4 +55,19 @@ int			ft_atoi(const char *str)
 	else if (result >= 9223372036854775807)
 		return (-1);
 	return (sign * result);
+}
+
+void    *ft_memset(void *dest, int c, size_t n)
+{
+        size_t                  i;
+        unsigned char   *str;
+
+        str = (unsigned char *)dest;
+        i = 0;
+        while (i < n)
+        {
+                *(str + i) = (unsigned char)c;
+                i++;
+        }
+        return (dest);
 }
