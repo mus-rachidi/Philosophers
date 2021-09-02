@@ -22,39 +22,44 @@ void ft_print(t_philo *philosopher, t_data *data)
 	printf("eat_times = %d\n",data->eat_times);
 	printf("state = %d\n",data->state);
 	printf("starttime = %lu\n",data->starttime);
-	printf("last_iate = %lu\n",philosopher->last_ate);
+	printf("last_ate = %lu\n",philosopher->last_ate);
 	printf("philosopher->lfork_mutex = %p \nphilosopher->rfork_mutex = %p \n",(void*)philosopher->lfork_mutex, (void*)philosopher->rfork_mutex);
 }
 
 int		main(int argc, char **argv)
 {
-	t_data		data;
+	t_data		*data;
 	t_philo		*philosophers;
 	pthread_t	*threads;
-
-	if (argc < 5 || argc > 6 || init_struct(&data, argc, argv))
+	data = malloc(sizeof(t_data));
+	if (!data)
+	{
+		printf("error\n");
+		return(0);
+	}
+	if (argc < 5 || argc > 6 || init_struct(data, argc, argv))
 	{
 		printf("bad arguments\n");
 		return 0;
 	}
-	philosophers = malloc(sizeof(t_philo) * data.nb_phil);
+	philosophers = malloc(sizeof(t_philo) * data->nb_phil);
 	if (!philosophers)
 	{
 		printf("error\n");
 		return(0);
 	}
-	threads = malloc(sizeof(pthread_t) * data.nb_phil);
+	threads = malloc(sizeof(pthread_t) * data->nb_phil);
 	if (!threads)
 	{
 		printf("error\n");
 		return(0);
 	}
-	if (setup_threads(&data, philosophers, threads))
+	if (setup_threads(data, philosophers, threads))
 	{
 		printf("error\n");
 		return(0);
 	}		
-	free(data.forks);
+	free(data);
 	free(philosophers);
 	free(threads);
 	return (0);

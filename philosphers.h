@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+ /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   philosphers.h                                      :+:      :+:    :+:   */
@@ -27,9 +27,7 @@ typedef struct	s_data
 	int				time_to_sleep;
 	int				eat_times;
 	int				state;
-	pthread_mutex_t	state_mutex;
 	pthread_mutex_t	*forks;
-	pthread_mutex_t	pen;
 	unsigned long	starttime;
 }	t_data;
 

@@ -12,13 +12,23 @@
 
 #include "philosphers.h"
 
+long	current_time_micr(void)
+{
+	struct timeval	time;
+	long			time_now;
+
+	gettimeofday(&time, NULL);
+	time_now = time.tv_usec + (time.tv_sec * 1000000);
+	return (time_now);
+}
+
 int		initialize_philosopher(t_philo *philosopher, t_data *data, int i)
 {
 	ft_memset(philosopher, 0, sizeof(t_philo));
 	philosopher->id = i + 1;
 	philosopher->lfork_mutex = &data->forks[i];
 	philosopher->rfork_mutex = &data->forks[(i + 1) % data->nb_phil];
- 	// philosopher->last_ate = get_time_ms();
+ 	philosopher->last_ate = current_time_micr();
 	if (pthread_mutex_init(&philosopher->last_ate_mutex, NULL))
 		return (1);
 	ft_print(philosopher, data);
@@ -32,7 +42,6 @@ int		init_struct(t_data *data, int argc, char **argv)
 	data->time_to_die = ft_atoi(argv[2]);
 	data->time_to_eat = ft_atoi(argv[3]);
 	data->time_to_sleep = ft_atoi(argv[4]);
-	data->eat_times = -1;
 	if (argc == 6)
 		data->eat_times = ft_atoi(argv[5]);
 	if (data->nb_phil <= 0 || data->time_to_die <= 0 || data->time_to_eat <= 0
@@ -41,12 +50,16 @@ int		init_struct(t_data *data, int argc, char **argv)
 	return (0);
 }
 
-void *philosopher(t_data *data)
+
+
+void *philosopher(void *arg)
 {
-	data->nb_phil += 1;
-	printf("%d\n",data->nb_phil);
-	sleep(3);
-	printf("%d\n",data->nb_phil); 	
+	t_philo			*phil;
+	phil = arg;
+	//phil->id += 1;
+	// printf("\n%d\n",phil->id);
+	// // sleep(3);
+	// printf("%d\n",phil->id); 	
 	return(0);
 }
 
