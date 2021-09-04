@@ -12,7 +12,7 @@
 
 #include "philosphers.h"
 
-long	current_time_micr(void)
+long	ft_microseconde(void)
 {
 	struct timeval	time;
 	long			time_now;
@@ -22,65 +22,76 @@ long	current_time_micr(void)
 	return (time_now);
 }
 
-int		initialize_philosopher(t_philo *philosopher, t_data *data, int i)
+int		initialize_philosopher(t_philo *philosopher, int i)
 {
-	ft_memset(philosopher, 0, sizeof(t_philo));
-	philosopher->id = i + 1;
-	philosopher->lfork_mutex = &data->forks[i];
-	philosopher->rfork_mutex = &data->forks[(i + 1) % data->nb_phil];
- 	philosopher->last_ate = current_time_micr();
-	if (pthread_mutex_init(&philosopher->last_ate_mutex, NULL))
-		return (1);
-	ft_print(philosopher, data);
+ 	philosopher->last_ate = ft_microseconde();
 	return (0);
 }
 
 int		init_struct(t_data *data, int argc, char **argv)
 {
-	ft_memset(data, 0, sizeof(t_data));
 	data->nb_phil = ft_atoi(argv[1]);
 	data->time_to_die = ft_atoi(argv[2]);
 	data->time_to_eat = ft_atoi(argv[3]);
 	data->time_to_sleep = ft_atoi(argv[4]);
 	if (argc == 6)
 		data->eat_times = ft_atoi(argv[5]);
+	else
+		data->eat_times = -1;
 	if (data->nb_phil <= 0 || data->time_to_die <= 0 || data->time_to_eat <= 0
 	|| data->time_to_sleep <= 0 || (argc == 6 && data->eat_times < 0))
 		return (1);
 	return (0);
 }
 
-
-
-void *philosopher(void *arg)
+void *ft_p(pthread_mutex_t *write_per, char *string ,int id)
 {
-	t_philo			*phil;
-	phil = arg;
-	//phil->id += 1;
-	// printf("\n%d\n",phil->id);
-	// // sleep(3);
-	// printf("%d\n",phil->id); 	
-	return(0);
+	struct timeval time;
+	unsigned long t;
+	pthread_mutex_lock(write_per);
+	gettimeofday(&time, NULL);
+	t = time.tv_sec * 1000 + time.tv_usec / 1000;
+	printf("%lu %d %s",t ,id, string);
+	pthread_mutex_unlock(write_per);
+	return(NULL);
 }
 
-int		setup_threads(t_data *data, t_philo *philosophers, pthread_t *threads)
+void	*philosopher(void *arg)
+{
+	t_philo *ph;
+	t_data *info;
+	ph = (t_philo *)arg;
+	while(1)
+	{
+		pthread_mutex_lock(&ph->mut[ph->id]);
+		ft_p(&ph->last_ate_mutex,"has taken a fork\n",ph->id + 1);
+		pthread_mutex_lock(&ph->mut[(ph->id - 1) % info->nb_phil]);
+		ft_p(&ph->last_ate_mutex,"has taken a fork\n",ph->id + 1);
+		pthread_mutex_unlock(&ph->mut[(ph->id- 1) % info->nb_phil]);
+		pthread_mutex_unlock(&ph->mut[ph->id]);
+		ft_p(&ph->last_ate_mutex,"is eating\n",ph->id + 1);
+		usleep(info->time_to_eat * 1000);
+	}
+	return(NULL);
+}
+
+int		setup_threads(t_data data, t_philo *philosophers, pthread_t *threads)
 {
 	int	i;
-
 	i = 0;
-	while (i < data->nb_phil)
+	while (i < data.nb_phil)
 	{
-		if (initialize_philosopher(&philosophers[i], data, i))
+		if (initialize_philosopher(&philosophers[i], i))
 			return (1);
 		if (pthread_create(&threads[i], NULL, philosopher, &philosophers[i]))
 			return (1);
 		++i;
 	}
 	i = 0;
-	while (i < data->nb_phil)
+	while (i < data.nb_phil)
 	{
-			pthread_join(threads[i], NULL);
-			++i;
+		pthread_join(threads[i], NULL);
+		++i;
 	}
 	return (0);
 }
