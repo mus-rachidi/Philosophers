@@ -32,12 +32,13 @@ typedef struct	s_data
 
 typedef struct	s_philo
 {
-	int	id;
+	int				id;
 	unsigned long	last_ate;
 	pthread_mutex_t	*mut;
 	pthread_mutex_t	last_ate_mutex;
 }	t_philo;
 
+long	ft_microseconde(void);
 void	ft_print(t_philo *philosopher, t_data *data);
 void	ft_putstr_fd(char *str, int fd);
 int		ft_atoi(const char *str);
@@ -45,5 +46,8 @@ int		initialize_philosopher(t_philo *philosopher,  int i);
 int		init_struct(t_data *data, int argc, char **argv);
 int		setup_threads(t_data data, t_philo *philosophers, pthread_t *threads);
 void	*ft_memset(void *dest, int c, size_t n);
+int		init_struct(t_data *data, int argc, char **argv);
+int		initialize_philosopher(t_philo *philosopher, int i);
+void	*philosopher(void *arg);
 
 #endif

@@ -12,20 +12,6 @@
 
 #include "philosphers.h"
 
-// void ft_print(t_philo *philosopher, t_data *data)
-// {
-// 	printf("======================>>>>\nid = %d\n",philosopher->id);
-// 	printf("nb_phil = %d\n",data.nb_phil);
-// 	printf("time_to_die = %d\n",data->time_to_die);
-// 	printf("time_to_eat = %d\n",data->time_to_eat);
-// 	printf("time_to_sleep = %d\n",data->time_to_sleep);
-// 	printf("eat_times = %d\n",data->eat_times);
-// 	printf("state = %d\n",data->state);
-// 	printf("starttime = %lu\n",data->starttime);
-// 	printf("last_ate = %lu\n",philosopher->last_ate);
-// 	//printf("philosopher->lfork_mutex = %p \nphilosopher->rfork_mutex = %p \n",(void*)philosopher->lfork_mutex, (void*)philosopher->rfork_mutex);
-// }
-
 int		main(int argc, char **argv)
 {
 	t_data			data;
