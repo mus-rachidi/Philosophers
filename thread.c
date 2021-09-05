@@ -6,7 +6,7 @@
 /*   By: murachid <murachid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/04 17:04:14 by murachid          #+#    #+#             */
-/*   Updated: 2021/09/04 17:08:46 by murachid         ###   ########.fr       */
+/*   Updated: 2021/09/05 18:05:18 by murachid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,20 @@ void *ft_p(pthread_mutex_t *write_per, char *string ,int id)
 
 void	*philosopher(void *arg)
 {
-	t_philo *ph;
-	t_data *info;
-	ph = (t_philo *)arg;
+	t_philosophers	*ph;
+	t_data			*data;
+	ph = (t_philosophers *)arg;
 	while(1)
 	{
-		pthread_mutex_lock(&ph->mut[ph->id]);
+		pthread_mutex_lock(&ph->p_mutex[ph->id]);
 		ft_p(&ph->last_ate_mutex,"has taken a fork\n",ph->id + 1);
-		pthread_mutex_lock(&ph->mut[(ph->id - 1) % info->nb_phil]);
+		pthread_mutex_lock(&ph->p_mutex[(ph->id - 1) % data->nb_phil]);
 		ft_p(&ph->last_ate_mutex,"has taken a fork\n",ph->id + 1);
-		pthread_mutex_unlock(&ph->mut[(ph->id- 1) % info->nb_phil]);
-		pthread_mutex_unlock(&ph->mut[ph->id]);
+		pthread_mutex_unlock(&ph->p_mutex[(ph->id- 1) % data->nb_phil]);
+		pthread_mutex_unlock(&ph->p_mutex[ph->id]);
 		ft_p(&ph->last_ate_mutex,"is eating\n",ph->id + 1);
-		usleep(info->time_to_eat * 1000);
+		usleep(data->time_to_eat);
+		ft_p(&ph->last_ate_mutex,"is sleeping\n",ph->id + 1);
 	}
 	return(NULL);
 }

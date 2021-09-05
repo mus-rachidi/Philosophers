@@ -6,13 +6,13 @@
 /*   By: murachid <murachid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 18:16:36 by murachid          #+#    #+#             */
-/*   Updated: 2021/09/04 17:06:32 by murachid         ###   ########.fr       */
+/*   Updated: 2021/09/05 17:19:30 by murachid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosphers.h"
 
-int		setup_threads(t_data data, t_philo *philosophers, pthread_t *threads)
+int		setup_threads(t_data data, t_philosophers *philosophers, pthread_t *threads)
 {
 	int	i;
 	i = 0;
