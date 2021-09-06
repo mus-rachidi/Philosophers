@@ -6,17 +6,11 @@
 /*   By: murachid <murachid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/04 17:03:18 by murachid          #+#    #+#             */
-/*   Updated: 2021/09/05 10:40:26 by murachid         ###   ########.fr       */
+/*   Updated: 2021/09/06 17:39:08 by murachid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosphers.h"
-
-int		initialize_philosopher(t_philosophers *philosopher, int i)
-{
- 	philosopher->last_ate = ft_microseconde();
-	return (0);
-}
 
 int		init_struct(t_data *data, int argc, char **argv)
 {

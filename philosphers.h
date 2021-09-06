@@ -35,21 +35,21 @@ typedef struct	s_philosophers
 {
 	int				id;
 	unsigned long	last_ate;
-	pthread_mutex_t	last_ate_mutex;
+	pthread_mutex_t	write_mutex;
 	pthread_mutex_t	*p_mutex;
+	
 
 }	t_philosophers;
 
 long	ft_microseconde(void);
-void	ft_print(t_philosophers *philosopher, t_data *data);
+// void	ft_print(t_philosophers *philosopher, t_data *data);
 void	ft_putstr_fd(char *str, int fd);
 int		ft_atoi(const char *str);
-int		initialize_philosopher(t_philosophers *philosopher,  int i);
+int		initialize_philosopher(t_philosophers *philosopher);
 int		init_struct(t_data *data, int argc, char **argv);
-int		setup_threads(t_data data, t_philosophers *philosophers, pthread_t *threads);
+int		main_threads(t_data data, t_philosophers *philosophers, pthread_t *threads);
 void	*ft_memset(void *dest, int c, size_t n);
 int		init_struct(t_data *data, int argc, char **argv);
-int		initialize_philosopher(t_philosophers *philosopher, int i);
 void	*philosopher(void *arg);
-
+int		check_died(void);
 #endif
