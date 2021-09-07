@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "philosphers.h"
+
 int  check_died(void)
 {
 	t_data data;
@@ -28,6 +29,7 @@ int  check_died(void)
 			return(1);
 	}
 }
+
 int		main_threads(t_data data, t_philosophers *philosophers, pthread_t *threads)
 {
 	int	i;
@@ -37,11 +39,11 @@ int		main_threads(t_data data, t_philosophers *philosophers, pthread_t *threads)
 		
 		if (pthread_create(&threads[i], NULL, philosopher, &philosophers[i]))
 			return (1);
-		if (check_died() == 1)
-		{
-			printf("%lu %d %s",philosophers->last_ate ,i, "is died\n");
-			return(0);
-		}
+		// if (check_died() == 1)
+		// {
+		// 	printf("%lu %d %s",philosophers->last_ate ,i, "is died\n");
+		// 	return(0);
+		// }
 		++i;
 		usleep(400);
 	}

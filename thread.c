@@ -47,13 +47,13 @@ void	*philosopher(void *arg)
 		ft_print(&ph->write_mutex,"has taken a fork\n",ph->id + 1);
 		ft_print(&ph->write_mutex,"is eating\n",ph->id + 1);
 		usleep(data->time_to_eat * 1000);
-		ph->last_ate = ft_microseconde();
+		//ph->last_ate = ft_microseconde();
 		ft_print(&ph->write_mutex,"is sleeping\n",ph->id + 1);
 		usleep(data->time_to_sleep * 1000);
 		ft_print(&ph->write_mutex,"is thinking\n",ph->id + 1);
 		pthread_mutex_unlock(&ph->p_mutex[(ph->id + 1) % data->nb_phil]);
 		pthread_mutex_unlock(&ph->p_mutex[ph->id]);
-		//usleep(1000000);
+		usleep(1000000);
 	}
 	return(NULL);
 }
