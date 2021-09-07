@@ -6,7 +6,7 @@
 /*   By: murachid <murachid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 18:16:21 by murachid          #+#    #+#             */
-/*   Updated: 2021/09/06 17:35:12 by murachid         ###   ########.fr       */
+/*   Updated: 2021/09/07 13:43:18 by murachid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int		main(int argc, char **argv)
 		philosophers[i].p_mutex = array_mutex;
 		philosophers[i].id = i;
 		philosophers[i].write_mutex = write_permission;
+		philosophers[i].nb_ate = 0;
 		i++;
 	}
 	threads = malloc(sizeof(pthread_t) * data.nb_phil);
