@@ -21,13 +21,12 @@
 
 typedef struct	s_data
 {
-	int				nb_phil;
-	int				time_to_die;
-	int				time_to_eat;
-	int				time_to_sleep;
-	int				eat_times;
-	int				state;
-	unsigned long	starttime;
+	int						nb_phil;
+	long long 				time_to_die;
+	long long 				time_to_eat;
+	long long 				time_to_sleep;
+	long long 				eat_times;
+	unsigned long			starttime;
 }	t_data;
 
 typedef struct	s_philosophers
@@ -37,6 +36,7 @@ typedef struct	s_philosophers
 	int				nb_ate;
 	pthread_mutex_t	write_mutex;
 	pthread_mutex_t	*p_mutex;
+	t_data data;
 }	t_philosophers;
 
 long	ft_microseconde(void);
@@ -49,4 +49,7 @@ void	*ft_memset(void *dest, int c, size_t n);
 int		init_struct(t_data *data, int argc, char **argv);
 void	*philosopher(void *arg);
 long	ft_milliseconde(void);
+void 	ft_sleep(useconds_t delay);
+void *ft_print(pthread_mutex_t *write_per, char *string ,int id);
+
 #endif
