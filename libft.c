@@ -6,7 +6,7 @@
 /*   By: murachid <murachid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 18:16:33 by murachid          #+#    #+#             */
-/*   Updated: 2021/08/31 18:16:34 by murachid         ###   ########.fr       */
+/*   Updated: 2021/09/09 18:06:44 by murachid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	iswhitespace(char c)
 	return (0);
 }
 
-int			ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
 	int					sign;
 	unsigned long int	result;
@@ -57,17 +57,17 @@ int			ft_atoi(const char *str)
 	return (sign * result);
 }
 
-void    *ft_memset(void *dest, int c, size_t n)
+void	*ft_memset(void *dest, int c, size_t n)
 {
-        size_t                  i;
-        unsigned char   *str;
+	size_t			i;
+	unsigned char	*str;
 
-        str = (unsigned char *)dest;
-        i = 0;
-        while (i < n)
-        {
-                *(str + i) = (unsigned char)c;
-                i++;
-        }
-        return (dest);
+	str = (unsigned char *)dest;
+	i = 0;
+	while (i < n)
+	{
+		*(str + i) = (unsigned char)c;
+		i++;
+	}
+	return (dest);
 }
