@@ -22,29 +22,16 @@ long 	ft_microseconde(void)
 	return (time_now);
 }
 
-void    my_sleep(long long time)
+void	my_sleep(int microseconde)
 {
-	long long    time_now;
+	long long			first_time;
 
-    time_now = ft_microseconde();
-	usleep(time * 1000);
-    while ((ft_microseconde() - time_now) < (time * 1000))
-    {
-    }
+	first_time = ft_microseconde();
+	usleep(microseconde - 40000);
+	while ((ft_microseconde() - first_time) < microseconde)
+	{
+	}
 }
-
-// void	my_sleep(int usecond)
-// {
-// 	struct timeval	tv;
-// 	size_t			time;
-
-// 	gettimeofday(&tv, NULL);
-// 	time = get_time();
-// 	usleep((usecond - 10) * 1000);
-// 	while ((get_time() - time) < usecond * 1000)
-// 	{
-// 	}
-// }
 
 void *ft_print(pthread_mutex_t *write_per, char *string ,int id)
 {
@@ -55,7 +42,7 @@ void *ft_print(pthread_mutex_t *write_per, char *string ,int id)
 	t = time.tv_sec * 1000 + time.tv_usec / 1000;
 	printf("%lu %d %s",t ,id, string);
 	pthread_mutex_unlock(write_per);
-	usleep(100);
+	usleep(500);
 	return(NULL);
 }
 

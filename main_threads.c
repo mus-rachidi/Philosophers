@@ -22,26 +22,11 @@ long	ft_milliseconde(void)
 	return (time_now);
 }
 
-void		check_died(t_philosophers *philosopher,t_data data)
-{
-	unsigned long time_deferent;
-	unsigned long time_now = ft_microseconde();
-
-	time_deferent = (time_now - philosopher->last_ate);
-	if(time_deferent >= (data.time_to_die) * 1000)
-	{
-		// printf("%ld %d is deid\n", time_now, philosopher->id + 1);
-		ft_print(&philosopher->write_mutex, "is dead\n", philosopher->id + 1);
-		
-		exit(0);
-	}
-}
-
 int		main_threads(t_data data, t_philosophers *philosophers, pthread_t *threads)
 {
 	int	i;
 	int j;
-
+	j = 0;
 	i = 0;
 	while (i < data.nb_phil)
 	{
@@ -57,7 +42,17 @@ int		main_threads(t_data data, t_philosophers *philosophers, pthread_t *threads)
 		i = 0;
 		while(i < data.nb_phil)
 		{
-			check_died(&philosophers[i], data);	
+			if(philosophers[i].nb_ate >= data.eat_times)
+			{
+				j++;
+				if(j = data.nb_phil)
+					exit(0);
+			}
+			if((ft_microseconde() - philosophers[i].last_ate) >= (data.time_to_die) * 1000)
+			{
+				ft_print(&philosophers->write_mutex, "is dead\n",philosophers->id + 1);	
+				exit(0);
+			}	
 			i++;		
 		}
 		usleep(500);
