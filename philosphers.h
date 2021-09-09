@@ -38,7 +38,7 @@ typedef struct	s_philosophers
 	pthread_mutex_t	*p_mutex;
 	t_data data;
 }	t_philosophers;
-
+void	my_sleep(int microseconde);
 long	ft_microseconde(void);
 void	ft_putstr_fd(char *str, int fd);
 int		ft_atoi(const char *str);

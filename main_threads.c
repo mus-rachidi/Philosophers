@@ -6,7 +6,7 @@
 /*   By: murachid <murachid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 18:16:36 by murachid          #+#    #+#             */
-/*   Updated: 2021/09/08 16:30:47 by murachid         ###   ########.fr       */
+/*   Updated: 2021/09/09 17:15:08 by murachid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,21 +41,22 @@ int		main_threads(t_data data, t_philosophers *philosophers, pthread_t *threads)
 	{
 		i = 0;
 		while(i < data.nb_phil)
-		{
-			if(philosophers[i].nb_ate >= data.eat_times)
-			{
-				j++;
-				if(j = data.nb_phil)
-					exit(0);
-			}
+		{	
 			if((ft_microseconde() - philosophers[i].last_ate) >= (data.time_to_die) * 1000)
 			{
 				ft_print(&philosophers->write_mutex, "is dead\n",philosophers->id + 1);	
 				exit(0);
-			}	
-			i++;		
+			}
+			if(data.eat_times != -1 && (philosophers[i].nb_ate > data.eat_times))
+			{
+				j++;
+				if(j == data.nb_phil)
+					exit(0);
+				return(0);
+			}
+			i++;
+			usleep(500);
 		}
-		usleep(500);
 	}
 	i = 0;
 	while (i < data.nb_phil)
