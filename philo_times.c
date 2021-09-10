@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   philo_times.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: murachid <murachid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/31 18:16:21 by murachid          #+#    #+#             */
-/*   Updated: 2021/09/10 14:37:39 by murachid         ###   ########.fr       */
+/*   Created: 2021/09/10 14:29:15 by murachid          #+#    #+#             */
+/*   Updated: 2021/09/10 14:40:14 by murachid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosphers.h"
 
-int	main(int argc, char **argv)
+long	ft_microseconde(void)
 {
-	int				i;
-	t_data			data;
+	struct timeval	time;
+	long			time_now;
 
-	if (argc < 5 || argc > 6 || init_data(&data, argc, argv))
+	gettimeofday(&time, NULL);
+	time_now = time.tv_usec + (time.tv_sec * 1000000);
+	return (time_now);
+}
+
+void	my_sleep(int microseconde)
+{
+	long long			first_time;
+
+	first_time = ft_microseconde();
+	usleep(microseconde - 60000);
+	while ((ft_microseconde() - first_time) < microseconde)
 	{
-		printf("bad arguments\n");
-		return (1);
 	}
-	return (alloc_and_init(data));
 }

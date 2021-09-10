@@ -1,26 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_threads.c                                     :+:      :+:    :+:   */
+/*   philo_threads.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: murachid <murachid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 18:16:36 by murachid          #+#    #+#             */
-/*   Updated: 2021/09/10 09:25:05 by murachid         ###   ########.fr       */
+/*   Updated: 2021/09/10 14:31:27 by murachid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosphers.h"
-
-long	ft_milliseconde(void)
-{
-	struct timeval	time;
-	long			time_now;
-
-	gettimeofday(&time, NULL);
-	time_now = time.tv_usec / 1000 + (time.tv_sec * 1000);
-	return (time_now);
-}
 
 void	check_died(t_data data, t_philosophers *p)
 {

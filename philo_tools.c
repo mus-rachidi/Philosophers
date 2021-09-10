@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.c                                            :+:      :+:    :+:   */
+/*   philo_tools.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: murachid <murachid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 18:16:33 by murachid          #+#    #+#             */
-/*   Updated: 2021/09/09 18:06:44 by murachid         ###   ########.fr       */
+/*   Updated: 2021/09/10 14:44:39 by murachid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,19 +55,4 @@ int	ft_atoi(const char *str)
 	else if (result >= 9223372036854775807)
 		return (-1);
 	return (sign * result);
-}
-
-void	*ft_memset(void *dest, int c, size_t n)
-{
-	size_t			i;
-	unsigned char	*str;
-
-	str = (unsigned char *)dest;
-	i = 0;
-	while (i < n)
-	{
-		*(str + i) = (unsigned char)c;
-		i++;
-	}
-	return (dest);
 }
