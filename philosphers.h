@@ -6,7 +6,7 @@
 /*   By: murachid <murachid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 18:16:39 by murachid          #+#    #+#             */
-/*   Updated: 2021/09/09 18:12:46 by murachid         ###   ########.fr       */
+/*   Updated: 2021/09/10 09:55:46 by murachid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ long	ft_microseconde(void);
 void	ft_putstr_fd(char *str, int fd);
 int		ft_atoi(const char *str);
 int		initialize_philosopher(t_philosophers *philosopher);
-int		init_struct(t_data *data, int argc, char **argv);
-int		main_threads(t_data data, t_philosophers *philosophers, pthread_t *threads);
+int		main_threads(t_data data, t_philosophers *p, pthread_t *threads);
 void	*ft_memset(void *dest, int c, size_t n);
 int		init_struct(t_data *data, int argc, char **argv);
 void	*philosopher(void *arg);
