@@ -39,6 +39,7 @@ typedef struct s_philosophers
 	t_data			data;
 }				t_philosophers;
 
+int		ft_error(int argc, char **argv);
 void	my_sleep(int microseconde);
 long	ft_microseconde(void);
 int		ft_atoi(const char *str);

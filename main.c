@@ -14,10 +14,14 @@
 
 int	main(int argc, char **argv)
 {
-	int				i;
 	t_data			data;
 
-	if (argc < 5 || argc > 6 || init_data(&data, argc, argv))
+	if (argc < 5 || argc > 6 || ft_error(argc, argv) == 1)
+	{
+		printf("bad arguments\n");
+		return (1);
+	}
+	if (init_data(&data, argc, argv))
 	{
 		printf("bad arguments\n");
 		return (1);

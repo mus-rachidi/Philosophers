@@ -16,7 +16,7 @@ CC = gcc -pedantic
 
 CFLAGS = -g 
 
-SRC = main.c philo_init.c philo_mutex.c philo_threads.c philo_times.c philo_tools.c \
+SRC = main.c philo_init.c philo_mutex.c philo_threads.c philo_times.c philo_tools.c philo_error.c \
 
 all : $(NAME)
 

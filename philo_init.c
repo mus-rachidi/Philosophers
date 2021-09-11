@@ -68,10 +68,9 @@ int	alloc_and_init(t_data data)
 		printf("error\n");
 		return (1);
 	}	
-	return (0);
-	while (i < data.nb_phil)
-		free(&philosophers[i]);
+	free(philosophers);
 	free(threads);
+	return (0);
 }
 
 int	init_data(t_data *data, int argc, char **argv)
