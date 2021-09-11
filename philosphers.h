@@ -6,7 +6,7 @@
 /*   By: murachid <murachid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 18:16:39 by murachid          #+#    #+#             */
-/*   Updated: 2021/09/10 14:47:07 by murachid         ###   ########.fr       */
+/*   Updated: 2021/09/11 14:19:49 by murachid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <stdlib.h>
 # include <pthread.h>
 # include <sys/time.h>
-# include <string.h>
 
 typedef struct s_data
 {
@@ -39,13 +38,15 @@ typedef struct s_philosophers
 	t_data			data;
 }				t_philosophers;
 
+void	ft_print_die(char *string, t_philosophers *ph);
 int		ft_error(int argc, char **argv);
-void	my_sleep(int microseconde);
-long	ft_microseconde(void);
+void	my_sleep(long long microseconde);
+long	ft_milliseconde(void);
 int		ft_atoi(const char *str);
 int		main_threads(t_data data, t_philosophers *p, pthread_t *threads);
 int		init_data(t_data *data, int argc, char **argv);
 void	*philosopher(void *arg);
-void	*ft_print(pthread_mutex_t *write_per, char *string, int id);
+void	ft_print(char *string, t_philosophers *ph);
 int		alloc_and_init(t_data data);
+long	ft_microseconde(void);
 #endif

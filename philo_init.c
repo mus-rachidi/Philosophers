@@ -6,7 +6,7 @@
 /*   By: murachid <murachid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/04 17:03:18 by murachid          #+#    #+#             */
-/*   Updated: 2021/09/10 14:44:07 by murachid         ###   ########.fr       */
+/*   Updated: 2021/09/11 14:13:07 by murachid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,14 @@ int	init_philosopher(t_philosophers	*philosophers, t_data data)
 {
 	int				i;
 	pthread_mutex_t	write_permission;
+	pthread_mutex_t	*forks;
 
 	i = 0;
+	forks = array(data);
 	pthread_mutex_init(&write_permission, NULL);
 	while (i < data.nb_phil)
 	{
-		philosophers[i].p_mutex = array(data);
+		philosophers[i].p_mutex = forks;
 		philosophers[i].id = i;
 		philosophers[i].write_mutex = write_permission;
 		philosophers[i].nb_ate = 0;
