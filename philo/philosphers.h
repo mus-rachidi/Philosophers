@@ -6,7 +6,7 @@
 /*   By: murachid <murachid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 18:16:39 by murachid          #+#    #+#             */
-/*   Updated: 2021/09/11 14:19:49 by murachid         ###   ########.fr       */
+/*   Updated: 2021/09/12 09:38:29 by murachid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_data
 typedef struct s_philosophers
 {
 	int				id;
-	unsigned long	last_ate;
+	long long		last_ate;
 	int				nb_ate;
 	pthread_mutex_t	write_mutex;
 	pthread_mutex_t	*p_mutex;
@@ -39,6 +39,7 @@ typedef struct s_philosophers
 }				t_philosophers;
 
 void	ft_print_die(char *string, t_philosophers *ph);
+int		check_died(t_data data, t_philosophers *p);
 int		ft_error(int argc, char **argv);
 void	my_sleep(long long microseconde);
 long	ft_milliseconde(void);
